@@ -67,4 +67,22 @@ test.describe.serial('Check specialty functionality', () => {
       expect(await specialtyNames.last().inputValue()).toBe(updatedValue);
     });
   });
+
+  test('Delete pet type', async () => {
+    let petTypesCount = 0;
+
+    await test.step('Remember the number of pet type in the list', async () => {
+      petTypesCount = await pages.getPetListTypePage().petTypeNames().count();
+    });
+
+    await test.step('Select the last item in the list and press "Delete" button', async () => {
+      await await pages.getPetListTypePage().deleteButtons().last().click();
+      await page.waitForTimeout(2000);
+    });
+
+    await test.step('Verify that the count of items on the page decreased by 1', async () => {
+      const changedCount = await pages.getPetListTypePage().petTypeNames().count();
+      expect(await changedCount).toBe(petTypesCount - 1);
+    });
+  });
 });
