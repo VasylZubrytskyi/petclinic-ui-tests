@@ -18,13 +18,10 @@ jobs:
     - uses: microsoft/playwright-github-action@v1
 
     - name: Install dependencies
-      run: npm ci
-
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run:  npm i && npx playwright install
 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx test
 
     - name: Publish HTML report
         if: always()
