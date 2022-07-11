@@ -21,7 +21,7 @@ jobs:
       run:  npm i && npx playwright install
 
     - name: Run Playwright tests
-      run: npx test
+      run: npm test
 
     - name: Publish HTML report
       if: always()
